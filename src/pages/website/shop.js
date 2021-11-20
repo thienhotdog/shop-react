@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd';
 import { Card } from 'antd';
 import '../../assets/website.css'
-import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { useState, useEffect } from 'react';
 import { filterProduct, getAll, sortProduct } from '../../api/product';
 
 const { Sider, Content } = Layout;
