@@ -64,16 +64,16 @@ const Shop = () =>{
                                 <p className="shop_title">khoảng giá</p>
                                 <ul className="shop_option">
                                     <li className="flex justify-between mb-2">
-                                        <span className="option-item" onClick={e => onHandleSort(e)} data-min="0" data-max="3000000">0 - 3,000,000đ</span>
+                                        <span className="option-item" onClick={e => onHandleSort(e)} data-min="0" data-max="3000000">0 - 3,000,000Đ</span>
                                     </li>
                                     <li className="flex justify-between mb-2">
-                                    <a href="#">3,000,000đ - 4,000,000đ</a>
+                                        <span className="option-item" onClick={e => onHandleSort(e)} data-min="3000000" data-max="4000000">3,000,000-4,000,000Đ</span>
                                     </li>
                                     <li className="flex justify-between mb-2">
-                                    <a href="#">4,000,000đ - 5,000,000đ</a>
+                                        <span className="option-item" onClick={e => onHandleSort(e)} data-min="4000000" data-max="5000000">4,000,000-5,000,000Đ</span>
                                     </li>
                                     <li className="flex justify-between mb-2">
-                                    <a href="#">5,000,000đ - 8,000,000đ</a>
+                                        <span className="option-item" onClick={e => onHandleSort(e)} data-min="5000000" data-max="8000000">5,000,000-8,000,000Đ</span>
                                     </li>
                                 </ul>
                             </div>
