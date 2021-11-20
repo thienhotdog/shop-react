@@ -5,10 +5,10 @@ import { Card } from 'antd';
 import '../../assets/website.css'
 import { useState, useEffect } from 'react';
 import { filterProduct, getAll, sortProduct } from '../../api/product';
+import { getAllCategory, getProductCate } from '../../api/category';
+import { async } from '@firebase/util';
 
 const { Sider, Content } = Layout;
-
-
 
 const Shop = () =>{
     const [product, setProducts] = useState([]);
@@ -25,14 +25,34 @@ const Shop = () =>{
         getProduct();
     },[])
 
+    const [category, setCategory] = useState([]);
+
+    useEffect(() =>{
+        const getCategory = async () =>{
+           try{
+                const {data} = await getAllCategory();
+                setCategory(data);
+           }catch(error){
+               console.log(error)
+           }
+        };
+        getCategory()
+    },[])
+
+
     const onHandleSort = async (e) => {
         let {min,max} = e.target.dataset;
         let product =  await sortProduct(min,max);
         setProducts(product.data)
     }
 
-    const onHandleSearch = async (e) =>{
+   const onHandleFildProduct = async (e) =>{
+       const id = e.target.dataset.id;
+        const product = await getProductCate(id);
+        setProducts(product.data);
+   }
 
+    const onHandleSearch = async (e) =>{
         let text = e.target.value;
         console.log(text);
         let product = await filterProduct(text);
@@ -42,7 +62,7 @@ const Shop = () =>{
     }
     
     return(
-            <Layout >
+            <Layout style={{"marginTop": "15px"}} >
                 <Sider className="container" style={{backgroundColor: 'white'}}>
                     <div className="direction">
                         <Link to="/index">Trang chủ</Link>
@@ -53,9 +73,11 @@ const Shop = () =>{
                                 <p className="shop_title">loại sản phẩm</p>
                                 <div>
                                     <ul className="shop_option">
-                                        <li><Link to="">Giày</Link></li>
-                                        <li><Link to="">Quần Áo</Link></li>
-                                        <li><Link to="">Phụ Kiện</Link></li>
+                                        {category.map((item,index) =>{
+                                            return<div key={index}>
+                                                    <li className="option-item" onClick={e => onHandleFildProduct(e)} data-id={item._id}>{item.name}</li>
+                                                </div>
+                                        })}
                                     </ul>
                                 </div>    
                             </div>
@@ -79,8 +101,8 @@ const Shop = () =>{
                             </div>
                     </div>
                 </Sider>
-                <Content>
-                    <Row className="shop container" gutter={[16, 24]} style={{backgroundColor: 'white'}}>
+                <Content style={{backgroundColor: 'white'}}>
+                    <Row className="shop container" gutter={[16, 24]}>
                         {product.map((item, index) =>{
                             return<Col className="gutter-row shop-" key={index} span={6}>
                                 <Link to = {`/product/${item._id}/detail`}>

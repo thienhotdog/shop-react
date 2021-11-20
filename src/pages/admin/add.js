@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import {getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable  } from '@firebase/storage';
+import '../../firebase/firebase';
 
 
 
@@ -13,12 +15,28 @@ const Addproduct = (props) =>{
     const navigate = useNavigate();
 
     const onSubmit = (data) =>{
-       const newProducts = {
-           ...data
-       }
-       console.log(newProducts);
-       props.onAdd(newProducts);
-       navigate("/admin");
+        console.log(data);
+        const storage = getStorage();
+        const img = data.img;
+        const file = img[0];
+        console.log(file);
+        const storageRef = ref(storage, `images/${file.name}`);
+        const UploadTask = uploadBytesResumable(storageRef, file);
+        uploadBytes(storageRef, file).then(() => {
+            getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) =>{
+                console.log(downloadURL);
+               const newProducts = {
+                  name: data.name,
+                  price: data.price,
+                  img: downloadURL,
+                  cateId : data.cateId
+               }
+               console.log(newProducts);
+               props.onAdd(newProducts);
+               navigate("/admin");
+            })
+        })
+
     }
     return(
         <div>
@@ -29,16 +47,15 @@ const Addproduct = (props) =>{
                 <input type="number" {...register("price", {required: true})} placeholder="giá" />
                 {errors.price && <span>bắt buộc phải nhập trường hợp này</span>}
                 <br />  
-                <input type="text" {...register("img", { required: true })} placeholder="ảnh" />
+                <input type="file" {...register("img", { required: true })} placeholder="ảnh" />
                 {errors.img && <span>bắt buộc phải nhập trường hợp này</span>}
                 <br />
                 <div className="mb-3">
                     <label className="form-label">CateId</label>
                         <select className="form-control" {...register("cateId")}>
-                            <option value="61911c5b3219c8a1090433f9" >Danh mục 1</option>
-                            <option value="61914c8eaeaa15a5f467ad78">Danh mục 2</option>
-                            <option value="61915352767fa24e68c240db">Danh mục 3</option>
-                            <option value="6191c27e10e0b42a96dc7e87">Danh mục 4</option>
+                            <option value="6198a4b0ae3c26257c7dd93c" >Giày</option>
+                            <option value="619914726fb1834b9215254f">Quần Áo</option>
+                            <option value="6198a4b4ae3c26257c7dd93e">Phụ Kiện</option>
                         </select>
                 {errors.name && <span className="d-block mt-2 text-danger">
                     Bắt buộc phải ấy link nhập trường này</span>}

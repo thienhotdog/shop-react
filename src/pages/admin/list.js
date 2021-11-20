@@ -12,7 +12,7 @@ const ListProduct = (props) =>{
         </div>
       </div>
       <div className="table-responsive">
-        <table className="table table-striped table-sm">
+        <table style={{"width":"100%"}}>
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -29,8 +29,8 @@ const ListProduct = (props) =>{
                 <td>{item.name}</td>
                 <td><img src={item.img} className="shop-img" /></td>
                 <td>{item.price}</td>
-                <td>
-                    <button onClick={() => props.onRemove(item._id)}>delete </button>
+                <td style={{"textAlign":"center"}}>
+                    <button onClick={() => props.onRemove(item._id)} style={{"margin":"0px 10px 0px 0px"}}>delete </button>
                     <Link to={`/admin/products/${item._id}/edit`}>Edit</Link>
                 </td>
               </tr>

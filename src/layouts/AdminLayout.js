@@ -27,9 +27,7 @@ const AdminLayout = () =>{
                     <Menu.Item key="2">
                         Products
                     </Menu.Item>
-                    <Menu.Item key="3">
-                        option9
-                    </Menu.Item>
+                    
                 </Menu>
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>

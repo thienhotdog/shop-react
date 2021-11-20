@@ -66,8 +66,25 @@ const EditProductForm = (props) => {
         <div className="mb-3">
           <label className="form-label">Giá sản phẩm</label>
           <input type="number" {...register("price", {required: true})}  placeholder={product.price} />
-                {errors.price && <span>bắt buộc phải nhập trường hợp này</span>}
-                <br />
+            {errors.price && <span>bắt buộc phải nhập trường hợp này</span>}
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Ảnh</label>
+
+          <input type="text" {...register("img", { required: true })} placeholder={product.img} />
+            {errors.img && <span>bắt buộc phải nhập trường hợp này</span>}
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">CateId</label>
+          <select className="form-control" {...register("cateId")}>
+              <option value="6198a4b0ae3c26257c7dd93c" >Giày</option>
+              <option value="619914726fb1834b9215254f">Quần Áo</option>
+              <option value="6198a4b4ae3c26257c7dd93e">Phụ Kiện</option>
+          </select>
+          {errors.name && <span className="d-block mt-2 text-danger">
+          Bắt buộc phải ấy link nhập trường này</span>}
         </div>
 
        
