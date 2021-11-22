@@ -12,7 +12,7 @@ import { getProductCate } from '../../api/category';
 const ProductDetailPage = () =>{
     const [product, setProduct] = useState({});
     const {id} = useParams(); 
-    console.log(id);
+    console.log();
     useEffect(() =>{
         const getProduct = async () =>{
             try{

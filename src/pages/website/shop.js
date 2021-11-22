@@ -6,13 +6,11 @@ import '../../assets/website.css'
 import { useState, useEffect } from 'react';
 import { filterProduct, getAll, sortProduct } from '../../api/product';
 import { getAllCategory, getProductCate } from '../../api/category';
-import { async } from '@firebase/util';
 
 const { Sider, Content } = Layout;
 
 const Shop = () =>{
     const [product, setProducts] = useState([]);
-
     useEffect(() =>{
         const getProduct = async () =>{
            try{

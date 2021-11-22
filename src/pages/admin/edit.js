@@ -17,7 +17,7 @@ const EditProductForm = (props) => {
 
 
   const { id } = useParams();
-  console.log(id);
+
   
 
   const [product, setProduct] = useState([]);
@@ -86,13 +86,9 @@ const EditProductForm = (props) => {
           {errors.name && <span className="d-block mt-2 text-danger">
           Bắt buộc phải ấy link nhập trường này</span>}
         </div>
-
-       
         <button type="submit" className="btn btn-primary">
           Cập nhật
         </button>
-
-       
       </form>
     </>
   );
