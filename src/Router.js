@@ -27,14 +27,14 @@ const Router = (props) => {
         </Route>
 
         {/* Layout Admin */}
-          <Route element={<AdminRoute />}>  
+          {/* <Route element={<AdminRoute />}>   */}
             <Route path="/admin/*"  element={<AdminLayout />}>
               <Route index element={<Navigate to="dashboard" />} />
               <Route path="dashboard" element={<ListProduct {...props} />} />
               <Route path="addproduct" element={<Addproduct {...props} />} />
               <Route path="products/:id/edit" element={<EditProductForm {...props} />} />
             </Route>
-          </Route>
+          {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );
