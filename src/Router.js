@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
-// import AdminRoute from "./auth/adminRoute";
+import AdminRoute from "./auth/adminRoute";
 import AdminLayout from "./layouts/AdminLayout";
 import WebsiteLayout from "./layouts/Website";
 import Addproduct from "./pages/admin/add";
@@ -27,14 +27,14 @@ const Router = (props) => {
         </Route>
 
         {/* Layout Admin */}
-          {/* <Route path="/admin/*" element={<AdminRoute />}>   */}
-            <Route path="/admin/*" element={<AdminLayout />}>
+          <Route element={<AdminRoute />}>  
+            <Route path="/admin/*"  element={<AdminLayout />}>
               <Route index element={<Navigate to="dashboard" />} />
               <Route path="dashboard" element={<ListProduct {...props} />} />
               <Route path="addproduct" element={<Addproduct {...props} />} />
               <Route path="products/:id/edit" element={<EditProductForm {...props} />} />
             </Route>
-          {/* </Route> */}
+          </Route>
       </Routes>
     </BrowserRouter>
   );

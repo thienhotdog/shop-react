@@ -4,11 +4,13 @@ import { signin } from "../../api/authApi";
 import { isAuthenticated, authenticate } from "../../auth";
 import { Navigate } from "react-router";
 
+
 const Signin = () => {
   const {user} = isAuthenticated();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
   const onSubmit = async (user) => {
     try {
       const { data } = await signin(user);
@@ -16,6 +18,7 @@ const Signin = () => {
       setSuccess(true);
     } catch (error) {
       setError(error.response.data);
+      alert("sai tk hoac mk");
     }
   };
   const redirectUser = () => {
@@ -32,7 +35,6 @@ const Signin = () => {
       {redirectUser()}
       <h2> Đăng nhập</h2>
       <hr />
-      {error && <div className="alert alert-danger">{error}</div>}
       <form action="" onSubmit={handleSubmit(onSubmit)} className="">
         <div className="mb-3">
           <label className="form-label">Email</label>

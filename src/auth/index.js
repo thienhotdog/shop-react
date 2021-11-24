@@ -12,8 +12,3 @@ export const authenticate = (token) => {
       return false;
     }
   };
-  export const signout = (next) => {
-    localStorage.removeItem("token");
-    next();
-  };
-  
