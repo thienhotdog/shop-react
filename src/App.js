@@ -41,13 +41,12 @@ function App() {
   };
 
   const onHandleEdit = async (item) => {
-    console.log("app.js", item);
     try {
       const { data } = await edit(item);
-      console.log(data);
       const newProducts = products.map((product) =>
-        product._id == data._id ? data : product
-      );
+      product._id == data._id ? data : product
+      ) 
+      console.log(newProducts)
       setProducts(newProducts);
     } catch (error) {
       console.log(error);

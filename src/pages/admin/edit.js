@@ -41,7 +41,7 @@ const EditProductForm = (props) => {
 
   const onSubmit = (data) =>{
     const newProducts = {
-        ...data
+       ...data
     }
     console.log(newProducts);
     props.onEdit(newProducts);
@@ -72,7 +72,7 @@ const EditProductForm = (props) => {
         <div className="mb-3">
           <label className="form-label">Ảnh</label>
 
-          <input type="text" {...register("img", { required: true })} placeholder={product.img} />
+          <input type="text" {...register("img", { required: true })}  />
             {errors.img && <span>bắt buộc phải nhập trường hợp này</span>}
         </div>
 
