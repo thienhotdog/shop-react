@@ -3,7 +3,6 @@ import AdminRoute from "./auth/adminRoute";
 import AdminLayout from "./layouts/AdminLayout";
 import WebsiteLayout from "./layouts/Website";
 import Addproduct from "./pages/admin/add";
-
 import EditProductForm from "./pages/admin/edit";
 import ListProduct from "./pages/admin/list";
 import HomePage from "./pages/website";
@@ -16,6 +15,7 @@ const Router = (props) => {
   return (
     <BrowserRouter>
       <Routes >
+        
         {/* Layout Website*/}
 
         <Route path="/" element={<WebsiteLayout />}>
@@ -27,14 +27,16 @@ const Router = (props) => {
         </Route>
 
         {/* Layout Admin */}
-          {/* <Route element={<AdminRoute />}>   */}
-            <Route path="/admin/*"  element={<AdminLayout />}>
-              <Route index element={<Navigate to="dashboard" />} />
-              <Route path="dashboard" element={<ListProduct {...props} />} />
-              <Route path="addproduct" element={<Addproduct {...props} />} />
-              <Route path="products/:id/edit" element={<EditProductForm {...props} />} />
-            </Route>
-          {/* </Route> */}
+            
+        <Route path="/admin/*" element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>}>
+            <Route index element={<Navigate to="dashboard" />} />
+            <Route path="dashboard" element={<ListProduct {...props} />} />
+            <Route path="addproduct" element={<Addproduct {...props} />} />
+            <Route path="products/:id/edit" element={<EditProductForm {...props} />} />
+        </Route>   
       </Routes>
     </BrowserRouter>
   );

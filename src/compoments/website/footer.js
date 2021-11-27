@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Layout, Row, Col } from 'antd';
 import "../../assets/website.css";
 const {  Footer } = Layout;

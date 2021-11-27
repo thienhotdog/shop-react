@@ -8,7 +8,6 @@ import { Navigate } from "react-router";
 const Signin = () => {
   const {user} = isAuthenticated();
   const { register, handleSubmit } = useForm();
-  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const onSubmit = async (user) => {
@@ -17,13 +16,13 @@ const Signin = () => {
       authenticate(data); // set thông tin vào localStorage
       setSuccess(true);
     } catch (error) {
-      setError(error.response.data);
-      alert("sai tk hoac mk");
+      console.log(error);
+      alert("sai tài khoản hoặc mật khẩu")
     }
   };
   const redirectUser = () => {
     if (success) {
-      if (user.role == 1) {
+      if (user && user.role === 1) {
         return <Navigate to="/admin" />;
       } else {
         return <Navigate to="/" />;

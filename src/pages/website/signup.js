@@ -46,7 +46,7 @@ const Signup = () => {
           <input
             type="password"
             className="form-control"
-            {...register("password")}
+            {...register("hashed_password")}
           />
         </div>
         <button type="submit" className="btn btn-primary btn-lg btn-block">

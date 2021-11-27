@@ -5,14 +5,12 @@ import { Card } from 'antd';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { get } from "../../api/product";
-import { async } from '@firebase/util';
-import { getProductCate } from '../../api/category';
+
 
 
 const ProductDetailPage = () =>{
     const [product, setProduct] = useState({});
     const {id} = useParams(); 
-    console.log();
     useEffect(() =>{
         const getProduct = async () =>{
             try{
