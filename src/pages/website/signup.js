@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-// import { signup } from '../../api/authAPI';
 import { signup } from "../../api/authApi";
 
 const Signup = () => {

@@ -1,6 +1,6 @@
 import { isAuthenticated } from "../auth";
-import {Route} from "react-router-dom";
-import { Navigate } from "react-router";
+
+import { Navigate } from "react-router-dom";
 const AdminRoute = (props) => {
 
   if (isAuthenticated() && isAuthenticated().user.role == 1) {

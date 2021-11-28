@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signin } from "../../api/authApi";
 import { isAuthenticated, authenticate } from "../../auth";
-import { Navigate } from "react-router";
+import { Navigate } from "react-router-dom";
 
 
 const Signin = () => {
